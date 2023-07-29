@@ -6,9 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin - Library</title>
     <script src="./js/scripts.js" defer></script>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body>
+    <form class="create-book">
+        <div>
+            <label for="name" class="create-book__label">Book</label>
+            <input type="text" class="create-book__input" id="name">
+        </div>
+        <div>
+            <label for="author" class="create-book__label">Author</label>
+            <input type="text" class="create-book__input" id="author">
+        </div>
+        <div>
+            <label for="pages" class="create-book__label">Pages</label>
+            <input type="text" class="create-book__input" id="pages">
+        </div>
+        <button type="submit" class="create-book__button">Submit</button>
+    </form>
 
 </body>
 
