@@ -1,16 +1,18 @@
 let myLibrary = [];
-const bookName = document.querySelector("#name");
-const authorName = document.querySelector("#author");
-const pages = document.querySelector("#pages");
+const bookName = document.getElementById("name");
+const authorName = document.getElementById("author");
+const pages = document.getElementById("pages");
+const readCheckbox = document.getElementById("read");
 const submitButton = document.querySelector(".create-book__button")
 const form = document.querySelector("form");
 const cardsContainer = document.querySelector(".cards");
 
 class Book {
-    constructor (title, author, pages) {
+    constructor (title, author, pages, readCheckbox) {
         this.title = title;
         this.author = author;
         this.pages = pages;
+        this.read = readCheckbox;
     }
 
     info() {
@@ -23,7 +25,7 @@ function addBookToLibrary() {
         alert("Please fill all of the fields");
         return
     }
-    const newBook = new Book(bookName.value, authorName.value, pages.value)
+    const newBook = new Book(bookName.value, authorName.value, pages.value, readCheckbox.checked);
     myLibrary.push(newBook);
     addBookToPage(newBook);
 }
@@ -52,6 +54,7 @@ function clearFormInput() {
     bookName.value = '';
     authorName.value = '';
     pages.value = '';
+    readCheckbox.checked = false;
 }
 
 
