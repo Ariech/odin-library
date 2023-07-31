@@ -36,17 +36,28 @@ function addBookToPage(book) {
 
         const bookTitle = document.createElement("h2");
         bookTitle.textContent = book.title;
+        bookTitle.classList.add("card__title");
 
         const bookAuthor = document.createElement("h3");
         bookAuthor.textContent = book.author;
+        bookAuthor.classList.add("card__author");
 
         const bookPages = document.createElement("h4");
         bookPages.textContent = book.pages;
+        bookPages.classList.add("card__pages");
+
+        const containerButton = document.createElement("div");
+        containerButton.classList.add("card__container");
+
+        const deleteButton = document.createElement("button"); 
+        deleteButton.classList.add("card__delete"); 
 
 
         newCard.appendChild(bookTitle);
         newCard.appendChild(bookAuthor);
         newCard.appendChild(bookPages);
+        newCard.appendChild(containerButton);
+        containerButton.appendChild(deleteButton);
         cardsContainer.appendChild(newCard);
 }
 
@@ -61,5 +72,6 @@ function clearFormInput() {
 form.onsubmit = (event) => {
     event.preventDefault();
     addBookToLibrary();
-    clearFormInput()
+    clearFormInput();
+    createDataIndex();
 }
