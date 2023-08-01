@@ -1,4 +1,5 @@
 let myLibrary = [];
+let id = 0;
 const bookName = document.getElementById("name");
 const authorName = document.getElementById("author");
 const pages = document.getElementById("pages");
@@ -8,11 +9,12 @@ const form = document.querySelector("form");
 const cardsContainer = document.querySelector(".cards");
 
 class Book {
-    constructor (title, author, pages, readCheckbox) {
+    constructor (title, author, pages, readCheckbox, id) {
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.read = readCheckbox;
+        this.id = id;
     }
 
     info() {
@@ -25,14 +27,18 @@ function addBookToLibrary() {
         alert("Please fill all of the fields");
         return
     }
-    const newBook = new Book(bookName.value, authorName.value, pages.value, readCheckbox.checked);
+    const newBook = new Book(bookName.value, authorName.value, pages.value, readCheckbox.checked, id);
     myLibrary.push(newBook);
     addBookToPage(newBook);
 }
 
 function addBookToPage(book) { 
+
+
         const newCard = document.createElement("div");
         newCard.classList.add("card");
+        newCard.setAttribute('book-id', id);
+        id++;
 
         const bookTitle = document.createElement("h2");
         bookTitle.textContent = book.title;
@@ -51,7 +57,7 @@ function addBookToPage(book) {
 
         const deleteButton = document.createElement("button"); 
         deleteButton.classList.add("card__delete"); 
-
+        deleteButton.addEventListener('click', removeFromLibrary);
 
         newCard.appendChild(bookTitle);
         newCard.appendChild(bookAuthor);
@@ -68,10 +74,17 @@ function clearFormInput() {
     readCheckbox.checked = false;
 }
 
+function removeFromLibrary(e) {
+    for(let i = 0; i < myLibrary.length; i++) {
+        if(myLibrary[i].id == e.target.parentNode.parentNode.getAttribute('book-id')) {
+            myLibrary.splice(i, 1);
+            e.target.parentNode.parentNode.remove();
+        }
+    }
+}
 
 form.onsubmit = (event) => {
     event.preventDefault();
     addBookToLibrary();
     clearFormInput();
-    createDataIndex();
 }
