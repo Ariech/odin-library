@@ -56,7 +56,7 @@ function addBookToPage(book) {
         readButton.textContent = book.readCheckbox;
         readButton.classList.add("card__read");
         initReadStatus(book, readButton);
-        // readButton.addEventListener('click', initReadStatus);
+        readButton.addEventListener('click', function(e) {updateReadStatus(e,readButton)});
 
 
         const containerButton = document.createElement("div");
@@ -89,6 +89,17 @@ function initReadStatus(book, readButton) {
     } else {
         readButton.textContent = "Not Read";
         readButton.style.backgroundColor = "red";
+    }
+}
+
+function updateReadStatus(e, readButton) {
+
+    if(e.target.textContent === "Read") {
+        e.target.textContent = "Not Read";
+        readButton.style.backgroundColor = "red";
+    } else {
+        e.target.textContent = "Read";
+        readButton.style.backgroundColor = "green";
     }
 }
 
