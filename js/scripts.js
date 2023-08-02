@@ -52,6 +52,13 @@ function addBookToPage(book) {
         bookPages.textContent = book.pages;
         bookPages.classList.add("card__pages");
 
+        const readButton = document.createElement("button");
+        readButton.textContent = book.readCheckbox;
+        readButton.classList.add("card__read");
+        initReadStatus(book, readButton);
+        // readButton.addEventListener('click', initReadStatus);
+
+
         const containerButton = document.createElement("div");
         containerButton.classList.add("card__container");
 
@@ -62,6 +69,7 @@ function addBookToPage(book) {
         newCard.appendChild(bookTitle);
         newCard.appendChild(bookAuthor);
         newCard.appendChild(bookPages);
+        newCard.appendChild(readButton);
         newCard.appendChild(containerButton);
         containerButton.appendChild(deleteButton);
         cardsContainer.appendChild(newCard);
@@ -72,6 +80,16 @@ function clearFormInput() {
     authorName.value = '';
     pages.value = '';
     readCheckbox.checked = false;
+}
+
+function initReadStatus(book, readButton) {
+    if(book.read) {
+        readButton.textContent = "Read";
+        readButton.style.backgroundColor = "green";
+    } else {
+        readButton.textContent = "Not Read";
+        readButton.style.backgroundColor = "red";
+    }
 }
 
 function removeFromLibrary(e) {
