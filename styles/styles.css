@@ -1,3 +1,7 @@
 body {
-  background-color: #413d3d;
+    background-color: #413d3d;
+}
+
+.create-book {
+    transform: scale(0);
 }
