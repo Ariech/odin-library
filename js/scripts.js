@@ -9,6 +9,7 @@ const submitButton = document.querySelector(".create-book__button");
 const form = document.querySelector("form");
 const cardsContainer = document.querySelector(".cards");
 const formButton = document.querySelector(".button-display");
+const overlay = document.querySelector(".overlay");
 
 class Book {
     constructor(title, author, pages, readCheckbox, id) {
@@ -81,6 +82,7 @@ function addBookToPage(book) {
     newCard.appendChild(containerButton);
     containerButton.appendChild(deleteButton);
     cardsContainer.appendChild(newCard);
+    closeFormDisplay();
 }
 
 function clearFormInput() {
@@ -88,6 +90,12 @@ function clearFormInput() {
     authorName.value = "";
     pages.value = "";
     readCheckbox.checked = false;
+}
+
+function closeFormDisplay() {
+    form.style.transform = "scale(0)";
+    overlay.style.opacity = "0";
+    formOpen = false;
 }
 
 function initReadStatus(book, readButton) {
@@ -125,9 +133,11 @@ function removeFromLibrary(e) {
 formButton.addEventListener("click", () => {
     if (formOpen) {
         form.style.transform = "scale(0)";
+        overlay.style.opacity = "0";
         formOpen = false;
     } else {
         form.style.transform = "scale(1)";
+        overlay.style.opacity = "1";
         formOpen = true;
     }
 });
