@@ -1,6 +1,8 @@
 let myLibrary = [];
 let id = 0;
 let formOpen = false;
+let green = "#51A551";
+let gray = "#888385";
 const bookName = document.getElementById("name");
 const authorName = document.getElementById("author");
 const pages = document.getElementById("pages");
@@ -43,44 +45,51 @@ function addBookToLibrary() {
 
 function addBookToPage(book) {
     const newCard = document.createElement("div");
-    newCard.classList.add("card");
+    newCard.classList.add("cards__card");
     newCard.setAttribute("book-id", id);
     id++;
 
     const bookTitle = document.createElement("h2");
     bookTitle.textContent = book.title;
-    bookTitle.classList.add("card__title");
+    bookTitle.classList.add("card__description");
+    bookTitle.classList.add("card__description--title");
 
     const bookAuthor = document.createElement("h3");
-    bookAuthor.textContent = book.author;
-    bookAuthor.classList.add("card__author");
+    bookAuthor.textContent = `Author: ${book.author}`;
+    bookAuthor.classList.add("card__description");
+    bookAuthor.classList.add("card__description--author");
 
     const bookPages = document.createElement("h4");
-    bookPages.textContent = book.pages;
-    bookPages.classList.add("card__pages");
+    bookPages.textContent = `Pages: ${book.pages}`;
+    bookPages.classList.add("card__description");
+    bookPages.classList.add("card__description--pages");
+
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button__container");
 
     const readButton = document.createElement("button");
     readButton.textContent = book.readCheckbox;
-    readButton.classList.add("card__read");
+    readButton.classList.add("card__description");
+    readButton.classList.add("card__description--read");
+
     initReadStatus(book, readButton);
 
     readButton.addEventListener("click", function (e) {
         updateReadStatus(e, readButton);
     });
 
-    const containerButton = document.createElement("div");
-    containerButton.classList.add("card__container");
-
     const deleteButton = document.createElement("button");
-    deleteButton.classList.add("card__delete");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("card__description");
+    deleteButton.classList.add("card__description--delete");
     deleteButton.addEventListener("click", removeFromLibrary);
 
     newCard.appendChild(bookTitle);
     newCard.appendChild(bookAuthor);
     newCard.appendChild(bookPages);
-    newCard.appendChild(readButton);
-    newCard.appendChild(containerButton);
-    containerButton.appendChild(deleteButton);
+    buttonContainer.appendChild(readButton);
+    buttonContainer.appendChild(deleteButton);
+    newCard.appendChild(buttonContainer);
     cardsContainer.appendChild(newCard);
     closeFormDisplay();
 }
@@ -101,20 +110,20 @@ function closeFormDisplay() {
 function initReadStatus(book, readButton) {
     if (book.read) {
         readButton.textContent = "Read";
-        readButton.style.backgroundColor = "green";
+        readButton.style.backgroundColor = green;
     } else {
         readButton.textContent = "Not Read";
-        readButton.style.backgroundColor = "red";
+        readButton.style.backgroundColor = gray;
     }
 }
 
 function updateReadStatus(e, readButton) {
     if (e.target.textContent === "Read") {
         e.target.textContent = "Not Read";
-        readButton.style.backgroundColor = "red";
+        readButton.style.backgroundColor = gray;
     } else {
         e.target.textContent = "Read";
-        readButton.style.backgroundColor = "green";
+        readButton.style.backgroundColor = green;
     }
 }
 

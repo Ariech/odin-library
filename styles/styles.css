@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 :root {
-    --gray: #e2e8f0;
     --blue: #0891b2;
-    --box-shadow-value: 0 2px 14px 0 rgba(0, 0, 0, 0.3);
+    --box-shadow-value: 10px 15px 10px 0 rgba(0, 0, 0, 0.3);
+    --box-shadow-header: 20px 20px 100px 0 rgba(0, 0, 0, 0.3);
     --gray-text: #78716c;
 }
 
@@ -17,11 +17,22 @@ html,
 body {
     height: 100%;
     font-family: "Roboto", sans-serif;
-    /* Temporary background color */
-    background-color: #413d3d;
+    background-color: #2d4059;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.header {
+    display: block;
+    background-color: var(--blue);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow-header);
 }
 
 .overlay {
@@ -36,30 +47,74 @@ body {
 }
 
 .cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex: 1;
-    max-width: 1000px;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 250px));
+    grid-auto-rows: 300px;
+    max-width: 1400px;
+    gap: 2rem;
     position: absolute;
-    top: 12%;
-    left: 15%;
+    top: 20%;
+    left: 5%;
     margin: 2rem;
+}
+
+.cards__card {
+    background-color: white;
+    box-shadow: var(--box-shadow-value);
+    border-radius: 0.5em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card__description {
+    padding: 1em;
+}
+
+.card__description--title {
+    padding: 0.5em;
+    background-color: var(--blue);
+    color: white;
+}
+
+.card__description--author,
+.card__description--pages {
+    margin: 0 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.button__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card__description--read,
+.card__description--delete {
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card__description--delete {
+    background-color: #9d0101;
 }
 
 .create-book {
     display: grid;
-    grid-template-rows: repeat(5, minmax(50px, 100px));
+    grid-template-rows: repeat(5, 100px);
     padding: 1rem;
     background-color: #fff;
     box-shadow: var(--box-shadow-value);
-
+    z-index: 1;
     transform: scale(0);
 }
 
 .button-display {
-    position: absolute;
-    bottom: 10%;
-    right: 10%;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
 }
