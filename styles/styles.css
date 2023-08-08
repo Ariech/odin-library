@@ -2,9 +2,11 @@
 
 :root {
     --blue: #0891b2;
+    --dark-blue: #2d4059;
+    --dark-red: #9d0101;
+    --green: #51a551;
     --box-shadow-value: 10px 15px 10px 0 rgba(0, 0, 0, 0.3);
     --box-shadow-header: 20px 20px 100px 0 rgba(0, 0, 0, 0.3);
-    --gray-text: #78716c;
 }
 
 * {
@@ -100,17 +102,72 @@ body {
 }
 
 .card__description--delete {
-    background-color: #9d0101;
+    background-color: var(--dark-red);
 }
 
 .create-book {
     display: grid;
     grid-template-rows: repeat(5, 100px);
-    padding: 1rem;
-    background-color: #fff;
+
+    background-color: var(--dark-blue);
     box-shadow: var(--box-shadow-value);
     z-index: 1;
     transform: scale(0);
+    border-radius: 10px;
+    border: 2px solid var(--blue);
+}
+
+.create-book__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+}
+
+.create-book__container--read {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-book__label {
+    text-align: center;
+    font-size: 1.2em;
+    color: white;
+    font-weight: 500;
+}
+
+.create-book__input {
+    border: 2px solid var(--blue);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #f7f7f7;
+}
+
+.create-book__input--read {
+    width: 40px;
+    height: 40px;
+    margin-left: 2rem;
+}
+
+.book__buttons {
+    display: flex;
+}
+
+.book__button {
+    flex: 1;
+    color: white;
+    border: none;
+}
+
+.book__button--cancel {
+    background-color: var(--dark-red);
+    border-bottom-left-radius: 10px;
+}
+
+.book__button--create {
+    background-color: var(--green);
+    border-bottom-right-radius: 10px;
 }
 
 .button-display {

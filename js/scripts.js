@@ -12,6 +12,7 @@ const form = document.querySelector("form");
 const cardsContainer = document.querySelector(".cards");
 const formButton = document.querySelector(".button-display");
 const overlay = document.querySelector(".overlay");
+const cancelButton = document.querySelector(".book__button--cancel");
 
 class Book {
     constructor(title, author, pages, readCheckbox, id) {
@@ -140,6 +141,18 @@ function removeFromLibrary(e) {
 }
 
 formButton.addEventListener("click", () => {
+    if (formOpen) {
+        form.style.transform = "scale(0)";
+        overlay.style.opacity = "0";
+        formOpen = false;
+    } else {
+        form.style.transform = "scale(1)";
+        overlay.style.opacity = "1";
+        formOpen = true;
+    }
+});
+
+cancelButton.addEventListener("click", () => {
     if (formOpen) {
         form.style.transform = "scale(0)";
         overlay.style.opacity = "0";
